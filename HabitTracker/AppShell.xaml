@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell
+    x:Class="HabitTracker.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:HabitTracker.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+    <TabBar>
+        <ShellContent Title="Today" ContentTemplate="{DataTemplate views:TodayPage}" />
+        <ShellContent Title="Habits" ContentTemplate="{DataTemplate views:HabitsPage}" />
+    </TabBar>
+
+</Shell>

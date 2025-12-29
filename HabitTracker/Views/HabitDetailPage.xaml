@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="HabitTracker.Views.HabitDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Habit">
+
+    <VerticalStackLayout Padding="16" Spacing="12">
+        <Label x:Name="NameLabel" FontSize="28" />
+
+        <Frame>
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Current streak" />
+                <Label x:Name="StreakLabel" FontSize="24" />
+            </VerticalStackLayout>
+        </Frame>
+
+        <Frame>
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Completion rate" />
+                <Label x:Name="Rate7Label" />
+                <Label x:Name="Rate30Label" />
+            </VerticalStackLayout>
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>

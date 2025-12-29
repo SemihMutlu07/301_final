@@ -1,0 +1,20 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HabitTracker.Views.TodayPage"
+             Title="Today">
+    <VerticalStackLayout Padding="16" Spacing="12">
+        <Label Text="Today" FontSize="28" />
+
+        <CollectionView x:Name="TodayList" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" ColumnDefinitions="Auto,*,Auto">
+                        <CheckBox Grid.Column="0" IsChecked="{Binding IsDone}" CheckedChanged="OnDoneChanged"/>
+                        <Label Grid.Column="1" Text="{Binding Name}" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                        <Button Grid.Column="2" Text=">" Clicked="OnOpenDetailClicked"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,27 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HabitTracker.Views.HabitsPage"
+             Title="Habits">
+    <VerticalStackLayout Padding="16" Spacing="12">
+
+        <HorizontalStackLayout Spacing="12">
+            <Label Text="Habits" FontSize="28" />
+            <Button Text="+ Add" Clicked="OnAddClicked" />
+        </HorizontalStackLayout>
+
+        <CollectionView x:Name="HabitsList" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" ColumnDefinitions="*, Auto" RowDefinitions="Auto">
+                        <Label Text="{Binding Name}" VerticalOptions="Center" LineBreakMode="TailTruncation" />
+                        <Button Grid.Column="1"
+                                Text="Delete"
+                                Clicked="OnDeleteClicked"
+                                CommandParameter="{Binding Id}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>
