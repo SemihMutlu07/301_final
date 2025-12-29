@@ -16,3 +16,4 @@ public class Completion
 
     public DateTime Date { get; set; }
 }
+    
