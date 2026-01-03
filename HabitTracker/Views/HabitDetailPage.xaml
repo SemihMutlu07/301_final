@@ -16,11 +16,20 @@
         </Frame>
 
         <Frame>
-            <VerticalStackLayout Spacing="8">
-                <Label Text="Completion rate" />
-                <Label x:Name="Rate7Label" />
-                <Label x:Name="Rate30Label" />
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Completion Rate"/>
+
+                <Label Text="Last 7 Days" FontAttributes="Bold" FontSize="12" />
+                <HorizontalStackLayout x:Name="Last7Container" Spacing="6"/>
+
+                <Label Text="Last 30 days" FontAttributes="Bold" FontSize="12"/>
+                <!-- İstersen sonra açarsın -->
+                <!--
+                <ProgressBar x:Name="Rate30Bar" HeightRequest="8" />
+                <Label x:Name="Rate30Text" FontSize="12" Opacity="0.8"/>
+                -->
             </VerticalStackLayout>
         </Frame>
+
     </VerticalStackLayout>
 </ContentPage>
