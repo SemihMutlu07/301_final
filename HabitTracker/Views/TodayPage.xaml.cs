@@ -1,3 +1,4 @@
+using System.Linq;
 using HabitTracker.Models;
 
 namespace HabitTracker.Views;
@@ -36,6 +37,12 @@ public partial class TodayPage : ContentPage
         }
 
         TodayList.ItemsSource = items;
+
+        var doneCount = items.Count(i => i.IsDone);
+        ProgressLabel.Text = $"Done: {doneCount}/{items.Count}";
+
+        EmptyLabel.IsVisible = items.Count == 0;
+        TodayList.IsVisible = items.Count > 0;
     }
 
     private async void OnDoneChanged(object sender, CheckedChangedEventArgs e)
@@ -43,8 +50,14 @@ public partial class TodayPage : ContentPage
         if (sender is CheckBox cb && cb.BindingContext is TodayItem item)
         {
             await AppState.Db.SetDoneAsync(item.HabitId, Today, e.Value);
-            item.IsDone = e.Value; 
-        }
+            item.IsDone = e.Value;
+
+            var list = TodayList.ItemsSource as IEnumerable<TodayItem>;
+            var total = list?.Count() ?? 0;
+            var done = list?.Count(i => i.IsDone) ?? 0;
+
+            ProgressLabel.Text = $"Done: {done}/{total}";
+        } 
     }
 
     private async void OnOpenDetailClicked(object sender, EventArgs e)
