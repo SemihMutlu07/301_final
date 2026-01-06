@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System.Linq;
 using HabitTracker.Models;
+using System.Xml;
 
 namespace HabitTracker.Data;
 
@@ -25,13 +26,12 @@ public class AppDb
         return await _db!.Table<Habit>().Where(h => h.IsActive).OrderBy(h => h.Name).ToListAsync();
     }
 
-    public async Task AddHabitAsync(string name)
+    public async Task<int> AddHabitAsync(string name)
     {
         await InitAsync();
-        name = (name ?? "").Trim();
-        if (name.Length == 0) return;
-
-        await _db!.InsertAsync(new Habit { Name = name });
+        var habit = new Habit { Name = name };
+        await _db!.InsertAsync(habit);
+        return habit.Id;
     }
 
     public async Task DeleteHabitAsync(int id)

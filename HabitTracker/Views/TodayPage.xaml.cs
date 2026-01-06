@@ -1,6 +1,5 @@
 using System.Linq;
 using HabitTracker.Models;
-
 namespace HabitTracker.Views;
 
 public partial class TodayPage : ContentPage
@@ -41,8 +40,9 @@ public partial class TodayPage : ContentPage
         var doneCount = items.Count(i => i.IsDone);
         ProgressLabel.Text = $"Done: {doneCount}/{items.Count}";
 
-        EmptyLabel.IsVisible = items.Count == 0;
+        EmptyContainer.IsVisible = items.Count == 0;
         TodayList.IsVisible = items.Count > 0;
+        ProgressLabel.IsVisible = items.Count > 0;
     }
 
     private async void OnDoneChanged(object sender, CheckedChangedEventArgs e)
@@ -55,7 +55,6 @@ public partial class TodayPage : ContentPage
             var list = TodayList.ItemsSource as IEnumerable<TodayItem>;
             var total = list?.Count() ?? 0;
             var done = list?.Count(i => i.IsDone) ?? 0;
-
             ProgressLabel.Text = $"Done: {done}/{total}";
         } 
     }
@@ -66,6 +65,9 @@ public partial class TodayPage : ContentPage
             await Navigation.PushAsync(new HabitDetailPage(item.HabitId, item.Name));
     }
 
-
+    private async void OnAddHabitClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//Habits");
+    }
 
 }
